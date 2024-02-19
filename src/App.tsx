@@ -7,6 +7,9 @@ function App() {
   const [forecastData, setForecastData] = useState(null)
   const [city, setCity] = useState('')
 
+  console.log(forecastData);
+  
+
   const getWeatherData = async () => {
     try {
       const response = await axios.get(`http://api.weatherapi.com/v1/current.json?key=49bdd87cefee485081214505241902&q=${city}/`)
