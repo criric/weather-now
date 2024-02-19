@@ -4,6 +4,21 @@ type WeatherProps = {
     weatherData: WeatherData
 }
 
+type ForecastDayType = {
+    date: string,
+    day: {
+        avg_humidity: number,
+        maxtemp_c: number,
+        maxtemp_f: number,
+        mintemp_c: number,
+        mintemp_f: number,
+        condition: {
+            text: string,
+            icon: string
+        }
+    }
+}
+
 type WeatherData = {
     current: {
         temp_c: number,
@@ -23,6 +38,9 @@ type WeatherData = {
         region: string,
         country: string,
         localtime: string
+    },
+    forecast: {
+        forecastday: ForecastDayType[]
     }
 }
 
@@ -72,10 +90,19 @@ export function Weather({weatherData}: WeatherProps){
                     </div>
                 </div>
                 <div className="text-end">
-                    <h1>Weather</h1>
+                    <h1 className="text-base-input text-lg">Weather</h1>
                     <h1>{month}/{day}/{year} {time}</h1>
                     <h1>{weatherData.current.condition.text}</h1>
                 </div>
+            </div>
+            <div>
+                {
+                   weatherData.forecast.forecastday.map(day => {
+                    return (
+                        <div>{day.date}</div>
+                    )
+                   })
+                }
             </div>
         </div>
     )
