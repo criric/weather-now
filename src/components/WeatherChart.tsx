@@ -4,8 +4,6 @@ export function WeatherChart({data, locale}: {data: any, locale: string}) {
     return (
       <ResponsiveContainer width="100%" aspect={5}>
         <AreaChart
-          width={500}
-          height={400}
           data={data[0]['hour']}
           margin={{
             top: 10,
