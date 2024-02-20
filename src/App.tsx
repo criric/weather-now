@@ -30,7 +30,7 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col items-center w-[650px] mx-auto">
+    <div className="flex flex-col items-center  max-w-[650px] mx-auto">
       <form action="" onSubmit={handleSubmitCity} className="flex gap-2">
         <input type="text" id="city-input" value={city} onChange={handleCityInputChange} className="bg-beige p-2 border rounded bg-opacity-70 text-grayish focus:border-yellow focus:outline-none focus:ring-0" placeholder="ex. London"/>
         <input type="submit" value="Buscar" className="cursor-pointer bg-yellow p-2 rounded"/>
