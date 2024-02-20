@@ -63,6 +63,13 @@ export function Weather({weatherData}: WeatherProps){
     const date = weatherData.location.localtime.split(' ')[0]
     const time = weatherData.location.localtime.split(' ')[1]
 
+    function formatDate(dateString: string) {
+        const dateParts = dateString.split(" ")[0].split("-");
+        const month = dateParts[1];
+        const day = dateParts[2];
+        return `${month}/${day}`;
+      }
+
     const [year, month, day] = date.split('-')
 
     return (
@@ -105,12 +112,12 @@ export function Weather({weatherData}: WeatherProps){
                 </div>
             </div>
             <WeatherChart data={weatherData.forecast.forecastday} locale={locale}/>
-            <div className="flex justify-between">
+            <div className="flex justify-between flex-wrap">
                 {
                    weatherData.forecast.forecastday.map(day => {
                     return (
                         <div key={day.date} className={`flex flex-col items-center p-2 ${formattedDate === day.date ? 'bg-base-text rounded' : ''}`}>
-                            <div className="text-base-input text-sm">{day.date.split('-').reverse().join('/')}</div>
+                            <div className="text-base-input text-sm">{formatDate(day.date)}</div>
                             <img src={day.day.condition.icon} alt="" />
                             <div className="flex gap-1 text-xs">
                                 <span className="text-base-input">{locale === 'world' ? day.day.maxtemp_c : day.day.maxtemp_f}°</span>
