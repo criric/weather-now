@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { WeatherChart } from "./WeatherChart"
 
 type WeatherProps = {
     weatherData: WeatherData
@@ -50,6 +51,14 @@ export function Weather({weatherData}: WeatherProps){
     const handleLocale = (locale: string) => {
         setLocale(locale)        
     }
+
+    const today = new Date();
+
+    const todayYear = today.getFullYear();
+    const todayMonth = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero indexed, so we add 1
+    const todayDay = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${todayYear}-${todayMonth}-${todayDay}`;    
     
     const date = weatherData.location.localtime.split(' ')[0]
     const time = weatherData.location.localtime.split(' ')[1]
@@ -95,11 +104,19 @@ export function Weather({weatherData}: WeatherProps){
                     <h1>{weatherData.current.condition.text}</h1>
                 </div>
             </div>
-            <div>
+            <WeatherChart data={weatherData.forecast.forecastday} locale={locale}/>
+            <div className="flex justify-between">
                 {
                    weatherData.forecast.forecastday.map(day => {
                     return (
-                        <div>{day.date}</div>
+                        <div key={day.date} className={`flex flex-col items-center p-2 ${formattedDate === day.date ? 'bg-base-text rounded' : ''}`}>
+                            <div className="text-base-input text-sm">{day.date.split('-').reverse().join('/')}</div>
+                            <img src={day.day.condition.icon} alt="" />
+                            <div className="flex gap-1 text-xs">
+                                <span className="text-base-input">{locale === 'world' ? day.day.maxtemp_c : day.day.maxtemp_f}°</span>
+                                <span>{locale === 'world' ? day.day.mintemp_c : day.day.mintemp_f}°</span>
+                            </div>
+                        </div>
                     )
                    })
                 }
