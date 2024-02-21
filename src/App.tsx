@@ -30,10 +30,10 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col items-center  max-w-[650px] mx-auto">
-      <form action="" onSubmit={handleSubmitCity} className="flex gap-2">
-        <input type="text" id="city-input" value={city} onChange={handleCityInputChange} className="bg-beige p-2 border rounded bg-opacity-70 text-grayish focus:border-yellow focus:outline-none focus:ring-0" placeholder="ex. London"/>
-        <input type="submit" value="Buscar" className="cursor-pointer bg-yellow p-2 rounded"/>
+    <div className="flex flex-col items-center justify-center max-w-[650px] mx-auto mt-10">
+      <form action="" onSubmit={handleSubmitCity} className="flex gap-2 w-100">
+        <input type="text" id="city-input" value={city} onChange={handleCityInputChange} className="bg-base-text p-2 border border-base-label rounded bg-opacity-70 text-grayish focus:border-yellow focus:outline-none focus:ring-0" placeholder="ex. London"/>
+        <input type="submit" value="Search" className="cursor-pointer bg-yellow p-2 rounded"/>
       </form>
       {
         weatherData && <Weather weatherData={weatherData} />

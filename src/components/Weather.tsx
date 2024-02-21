@@ -82,7 +82,7 @@ export function Weather({weatherData}: WeatherProps){
                     <img src={weatherData.current.condition.icon} alt="weather icon"/>
                     <div className="flex gap-1">
                         <h1 className="text-5xl text-base-input">{locale === 'world' ? weatherData.current.temp_c : weatherData.current.temp_f}</h1>
-                        <div>
+                        <div className="flex flex-nowrap">
                             <span 
                             className={`cursor-pointer ${locale === 'world' ? 'text-base-input' : ''}`}
                             onClick={() => handleLocale('world')}
